@@ -7,7 +7,7 @@ export const isAuthenticated = (parent, args, { me }) =>
 export const isAdmin = combineResolvers(
   isAuthenticated,
   (parent, args, { me: { role } }) =>
-    role === 'ADMIN'
+    role === 'admin'
       ? skip
       : new ForbiddenError('Not authorized as admin.'),
 );

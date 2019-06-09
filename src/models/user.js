@@ -4,6 +4,9 @@ import bcrypt from 'bcrypt';
 import isEmail from 'validator/lib/isEmail';
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String
+  },
   username: {
     type: String,
     unique: true,
@@ -20,6 +23,23 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 7,
     maxlength: 42,
+  },
+  address: {
+    street: String,
+    suite: String,
+    city: String,
+    zipcode: String,
+    geo: {
+      lat: Number,
+      lng: Number
+    }
+  },
+  phone: String,
+  website: String,
+  company: {
+    name: String,
+    catchPhrase: String,
+    bs: String
   },
   role: {
     type: String,
