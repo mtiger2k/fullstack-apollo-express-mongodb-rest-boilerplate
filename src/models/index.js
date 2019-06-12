@@ -6,6 +6,7 @@ import Comment from './comment';
 import Message from './message';
 
 const connectDb = () => {
+  console.log(process.env.TEST_DATABASE_URL)
   if (process.env.TEST_DATABASE_URL) {
     return mongoose.connect(
       process.env.TEST_DATABASE_URL,
@@ -21,8 +22,14 @@ const connectDb = () => {
   }
 };
 
+const restMap = [
+  {name: "users", model: User},
+  {name: "posts", model: Post},
+  {name: "comments", model: Comment}
+]
+
 const models = { User, Post, Comment, Message };
 
-export { connectDb };
+export { connectDb, restMap };
 
 export default models;

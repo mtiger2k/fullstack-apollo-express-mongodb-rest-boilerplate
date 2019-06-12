@@ -1,4 +1,4 @@
-import models from '../models';
+import { restMap } from '../models'
 
 var express = require('express');
 var router = express.Router();
@@ -11,8 +11,9 @@ const restify = require('express-restify-mongoose')
 
 router.use(methodOverride())
 
-Object.keys(models).forEach(modelName => {
-	restify.serve(router, models[modelName], {
+restMap.forEach(({name, model}) => {
+	restify.serve(router, model, {
+	  name,
 	  totalCountHeader: 'X-Total-Count',
 	  preMiddleware: requireAuth
 	})
